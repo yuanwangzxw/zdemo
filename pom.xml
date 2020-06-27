@@ -7,9 +7,6 @@
         <module>eureka7001</module>
         <module>consu8001</module>
         <module>pro9001</module>
-        <module>spring-demo</module>
-        <module>spring-demo</module>
-        <module>spring-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -18,7 +15,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>zdemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>Demo project for Spring Boot</description>
