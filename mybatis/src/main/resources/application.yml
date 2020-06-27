@@ -1,0 +1,15 @@
+virtualHost: 192.168.56.101
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      url: jdbc:mysql://${virtualHost}:3306/account
+      username: root
+      password: 123456
+mybatis:
+  type-aliases-package: com.zxw.demo.mapper
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.zxw.demo.mapper: debug

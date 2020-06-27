@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxw.demo.mapper.KnlTestMapper">
+  <resultMap id="BaseResultMap" type="com.zxw.demo.entity.KnlTest">
+    <!--@mbg.generated-->
+    <!--@Table account.knl_test-->
+    <id column="guid" jdbcType="BIGINT" property="guid"/>
+    <result column="knl_name" jdbcType="VARCHAR" property="knlName"/>
+    <result column="knl_fee" jdbcType="DECIMAL" property="knlFee"/>
+    <result column="user_create" jdbcType="VARCHAR" property="userCreate"/>
+    <result column="gmt_create" jdbcType="DATE" property="gmtCreate"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    guid, knl_name, knl_fee, user_create, gmt_create
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from account.knl_test
+    where guid = #{guid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from account.knl_test
+    where guid = #{guid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="guid" keyProperty="guid" parameterType="com.zxw.demo.entity.KnlTest" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into account.knl_test (knl_name, knl_fee, user_create, 
+      gmt_create)
+    values (#{knlName,jdbcType=VARCHAR}, #{knlFee,jdbcType=DECIMAL}, #{userCreate,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" keyColumn="guid" keyProperty="guid" parameterType="com.zxw.demo.entity.KnlTest" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into account.knl_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="knlName != null">
+        knl_name,
+      </if>
+      <if test="knlFee != null">
+        knl_fee,
+      </if>
+      <if test="userCreate != null">
+        user_create,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="knlName != null">
+        #{knlName,jdbcType=VARCHAR},
+      </if>
+      <if test="knlFee != null">
+        #{knlFee,jdbcType=DECIMAL},
+      </if>
+      <if test="userCreate != null">
+        #{userCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxw.demo.entity.KnlTest">
+    <!--@mbg.generated-->
+    update account.knl_test
+    <set>
+      <if test="knlName != null">
+        knl_name = #{knlName,jdbcType=VARCHAR},
+      </if>
+      <if test="knlFee != null">
+        knl_fee = #{knlFee,jdbcType=DECIMAL},
+      </if>
+      <if test="userCreate != null">
+        user_create = #{userCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=DATE},
+      </if>
+    </set>
+    where guid = #{guid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxw.demo.entity.KnlTest">
+    <!--@mbg.generated-->
+    update account.knl_test
+    set knl_name = #{knlName,jdbcType=VARCHAR},
+      knl_fee = #{knlFee,jdbcType=DECIMAL},
+      user_create = #{userCreate,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=DATE}
+    where guid = #{guid,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update account.knl_test
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="knl_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when guid = #{item.guid,jdbcType=BIGINT} then #{item.knlName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="knl_fee = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when guid = #{item.guid,jdbcType=BIGINT} then #{item.knlFee,jdbcType=DECIMAL}
+        </foreach>
+      </trim>
+      <trim prefix="user_create = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when guid = #{item.guid,jdbcType=BIGINT} then #{item.userCreate,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="gmt_create = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when guid = #{item.guid,jdbcType=BIGINT} then #{item.gmtCreate,jdbcType=DATE}
+        </foreach>
+      </trim>
+    </trim>
+    where guid in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.guid,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="guid" keyProperty="guid" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into account.knl_test
+    (knl_name, knl_fee, user_create, gmt_create)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.knlName,jdbcType=VARCHAR}, #{item.knlFee,jdbcType=DECIMAL}, #{item.userCreate,jdbcType=VARCHAR}, 
+        #{item.gmtCreate,jdbcType=DATE})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="guid" keyProperty="guid" parameterType="com.zxw.demo.entity.KnlTest" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into account.knl_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      knl_name,
+      knl_fee,
+      user_create,
+      gmt_create,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=BIGINT},
+      </if>
+      #{knlName,jdbcType=VARCHAR},
+      #{knlFee,jdbcType=DECIMAL},
+      #{userCreate,jdbcType=VARCHAR},
+      #{gmtCreate,jdbcType=DATE},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="guid != null">
+        guid = #{guid,jdbcType=BIGINT},
+      </if>
+      knl_name = #{knlName,jdbcType=VARCHAR},
+      knl_fee = #{knlFee,jdbcType=DECIMAL},
+      user_create = #{userCreate,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=DATE},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="guid" keyProperty="guid" parameterType="com.zxw.demo.entity.KnlTest" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into account.knl_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="knlName != null">
+        knl_name,
+      </if>
+      <if test="knlFee != null">
+        knl_fee,
+      </if>
+      <if test="userCreate != null">
+        user_create,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=BIGINT},
+      </if>
+      <if test="knlName != null">
+        #{knlName,jdbcType=VARCHAR},
+      </if>
+      <if test="knlFee != null">
+        #{knlFee,jdbcType=DECIMAL},
+      </if>
+      <if test="userCreate != null">
+        #{userCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=DATE},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="guid != null">
+        guid = #{guid,jdbcType=BIGINT},
+      </if>
+      <if test="knlName != null">
+        knl_name = #{knlName,jdbcType=VARCHAR},
+      </if>
+      <if test="knlFee != null">
+        knl_fee = #{knlFee,jdbcType=DECIMAL},
+      </if>
+      <if test="userCreate != null">
+        user_create = #{userCreate,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="findByConditionResultMap" type="com.zxw.demo.entity.KnlTest">
+    <result column="guid" property="guid"/>
+    <result column="knl_name" property="knlName"/>
+    <result column="knl_fee" property="knlFee"/>
+    <result column="user_create" property="userCreate"/>
+    <result column="gmt_create" property="gmtCreate"/>
+  </resultMap>
+  <select id="findByCondition" resultMap="findByConditionResultMap">
+    select * from knl_test
+    <where>
+      <if test='knlName!=null and knlName.trim()!= &quot;&quot;'>and knl_name=#{knlName}</if>
+      <if test='feeList!=null and feeList.size()>0'>
+        <foreach collection='feeList' item='item' index='index' open='and knl_fee in (' separate=',' close=')'>#{item}
+        </foreach>
+      </if>
+    </where>
+  </select>
+  <resultMap id="findByConditionResultMap" type="com.zxw.demo.entity.KnlTest">
+    <result column="guid" property="guid"/>
+    <result column="knl_name" property="knlName"/>
+    <result column="knl_fee" property="knlFee"/>
+    <result column="user_create" property="userCreate"/>
+    <result column="gmt_create" property="gmtCreate"/>
+  </resultMap>
+  <select id="findByCondition" resultMap="findByConditionResultMap">
+    select * from knl_test
+    <where>
+      <if test='knlName!=null and knlName.trim()!= &quot;&quot;'>and knl_name=#{knlName}</if>
+      <if test='feeList!=null and feeList.size()>0'>
+        <foreach collection='feeList' item='item' index='index' open='and knl_fee in (' separate=',' close=')'>#{item}
+        </foreach>
+      </if>
+    </where>
+  </select>
+</mapper>
