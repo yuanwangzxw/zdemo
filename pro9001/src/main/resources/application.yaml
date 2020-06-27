@@ -1,0 +1,40 @@
+virtualIP: 192.168.56.101
+server:
+  port: 9001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+spring:
+  application:
+    name: pro9001
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://${virtualIP}:33306/order?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+
+mybatis-plus:
+  type-aliases-package: com.example.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.jdk14.Jdk14LoggingImpl
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: true
+  service:
+    grouplist:
+      default: 127.0.0.1:8091
+  config:
+    type: file
+    file:
+      name: file.conf
+  registry:
+    type: file
+
+

@@ -1,15 +1,15 @@
-package com.example.demo.controller;
+package com.zxw.authentication.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("/auth")
 @RestController
-@RequestMapping("/demo")
-public class DemoController {
+public class AuthController {
 
     @GetMapping("/test")
-    public String demo(){
-        return "demo";
+    public String test() {
+        return "success";
     }
 }
