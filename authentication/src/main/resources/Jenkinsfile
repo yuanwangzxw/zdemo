@@ -1,0 +1,18 @@
+pipeline{
+	agent any
+
+	stages{
+		stage('拉取代码'){
+			steps{
+				checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/yuanwangzxw/zdemo.git']]])
+			}
+		}
+
+		stage('编绎构建'){
+			steps{
+				sh : 'mvn -f authentication clean install -Dmaven.test.skip=true'
+			}
+		}
+
+	}
+}
