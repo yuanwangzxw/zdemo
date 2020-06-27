@@ -16,9 +16,10 @@ pipeline{
 
 		stage('上传镜像'){
             steps{
-                sh label: '', script: 'docker tag authentication:0.0.1-SNAPSHOT 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT
-                 && docker login -u root -p Harbor12345 192.168.56.101 && docker push 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT
-                 && docker rmi -f authentication:0.0.1-SNAPSHOT'
+                sh 'docker tag authentication:0.0.1-SNAPSHOT 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT'
+                sh 'docker login -u root -p Harbor12345 192.168.56.101'
+                sh 'docker push 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT'
+                sh 'docker rmi -f authentication:0.0.1-SNAPSHOT'
             }
         }
 
