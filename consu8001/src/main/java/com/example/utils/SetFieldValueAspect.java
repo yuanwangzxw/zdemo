@@ -19,7 +19,7 @@ public class SetFieldValueAspect {
         if (proceed instanceof Collection) {
 
         }
-        beanUtil.setFieldValue(proceed);
+//        beanUtil.setFieldValue(proceed);
         return proceed;
     }
 }

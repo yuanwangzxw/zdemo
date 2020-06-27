@@ -19,7 +19,31 @@ pipeline{
                 sh 'docker tag authentication:0.0.1-SNAPSHOT 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT'
                 sh 'docker login -u admin -p Harbor12345 192.168.56.101:80'
                 sh 'docker push 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT'
+                sh 'docker rmi -f authentication:0.0.1-SNAPSHOT'
                 sh 'docker rmi -f 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT'
+            }
+        }
+
+        stage('远程部署'){
+            steps{
+            sshPublisher(publishers: [sshPublisherDesc(configName: '192.168.56.101', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''#! /bin/bash
+            imageName=192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT
+            contanierName=authentication
+
+            containerId=$(docker ps -a |grep -w ${contanierName}|awk \'print $1\')
+            if [ -n "$containerId" ]; then
+                docker stop ${containerId}
+                docker rm ${containerId}
+                echo "成功删除容器:$containerId"
+            fi
+            imageId=$(docker images|grep -w ${imageName} | awk \'print $3\')
+            if [ "$imageId" != "" ]; then
+                docker rmi -f ${imageId}
+            fi
+            docker login -u admin -p Harbor 192.168.56.101:80
+            docker pull ${imageName}
+
+            docker run -di -p 6001:6001 ${contanierName}''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
 
