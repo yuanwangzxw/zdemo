@@ -40,7 +40,7 @@ pipeline{
             if [ "$imageId" != "" ]; then
                 docker rmi -f ${imageId}
             fi
-            docker login -u admin -p Harbor 192.168.56.101:80
+            docker login -u admin -p Harbor12345 192.168.56.101:80
             docker pull ${imageName}
 
             docker run -di -p 6001:6001 ${contanierName}''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
