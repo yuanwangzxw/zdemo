@@ -3,4 +3,3 @@
 hello(){
   return "hello world!"
 }
-echo hello
