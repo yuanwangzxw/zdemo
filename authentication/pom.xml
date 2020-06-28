@@ -67,15 +67,14 @@
             <!--相当于docker build命令-->
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.10</version>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.2</version>
                 <configuration>
-                    <repository>${project.artifactId}</repository>
-                    <tag>${project.version}</tag>
-                    <buildArgs>
-                        <!--传参-->
-                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                    </buildArgs>
+                    <imageName>192.168.56.101:80/${project.artifactId}:${project.version}</imageName>
+                    <baseImage>openjdk:8-jdk</baseImage>
+                    <entryPoint>["java","-jar","${project.build.finalName}"]</entryPoint>
+                    <pushImage>true</pushImage>
+                    <registryUrl>192.168.56.101:80</registryUrl>
                 </configuration>
             </plugin>
         </plugins>
