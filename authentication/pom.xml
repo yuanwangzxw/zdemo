@@ -73,8 +73,6 @@
                     <imageName>192.168.56.101:80/${project.artifactId}:${project.version}</imageName>
                     <baseImage>openjdk:8-jdk</baseImage>
                     <entryPoint>["java","-jar","${project.build.finalName}"]</entryPoint>
-                    <pushImage>true</pushImage>
-                    <registryUrl>192.168.56.101:80</registryUrl>
                 </configuration>
             </plugin>
         </plugins>
