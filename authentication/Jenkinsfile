@@ -28,7 +28,7 @@ pipeline{
             steps{
 sshPublisher(publishers: [sshPublisherDesc(configName: '192.168.56.101', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''#! /bin/bash
 imageName=192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT
-contanierName=authentication:0.0.1-SNAPSHOT
+contanierName=authentication
 
 containerId=$(docker ps -a |grep -w ${contanierName}|awk \'{print $1}\')
 if [ "$containerId" != "" ]; then
