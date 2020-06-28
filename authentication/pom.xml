@@ -70,9 +70,9 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.2.2</version>
                 <configuration>
-                    <imageName>192.168.56.101:80/${project.artifactId}:${project.version}</imageName>
+                    <imageName>${project.artifactId}:${project.version}</imageName>
                     <baseImage>openjdk:8-jdk</baseImage>
-                    <entryPoint>["java","-jar","${project.build.finalName}"]</entryPoint>
+                    <entryPoint>["java","-jar","${project.artifactId}:${project.version}"]</entryPoint>
                 </configuration>
             </plugin>
         </plugins>
