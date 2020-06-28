@@ -19,8 +19,7 @@ pipeline{
                 sh 'docker tag authentication:0.0.1-SNAPSHOT 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT'
                 sh 'docker login -u admin -p Harbor12345 192.168.56.101:80'
                 sh 'docker push 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT'
-                sh 'docker rmi -f authentication:0.0.1-SNAPSHOT'
-                sh 'docker rmi -f 192.168.56.101:80/test/authentication:0.0.1-SNAPSHOT'
+                sh 'docker rmi -f $(docker images -a|grep authentication|awk \'{print $ 3}\')'
             }
         }
 

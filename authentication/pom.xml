@@ -72,7 +72,14 @@
                 <configuration>
                     <imageName>${project.artifactId}:${project.version}</imageName>
                     <baseImage>openjdk:8-jdk</baseImage>
-                    <entryPoint>["java","-jar","${project.artifactId}"]</entryPoint>
+                    <entryPoint>["java","-jar","${project.build.finalName}.jar"]</entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>
