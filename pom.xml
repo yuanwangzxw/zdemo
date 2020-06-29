@@ -7,6 +7,9 @@
         <module>eureka7001</module>
         <module>consu8001</module>
         <module>pro9001</module>
+        <module>mybatis-plus</module>
+        <module>mybatis</module>
+        <module>authentication</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -17,7 +20,7 @@
     <groupId>com.example</groupId>
     <artifactId>zdemo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>zdemo</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
