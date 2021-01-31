@@ -1,6 +1,7 @@
 package com.zxw.authentication.example;
 
 import io.swagger.models.auth.In;
+import org.apache.commons.lang3.StringUtils;
 import org.omg.PortableInterceptor.Interceptor;
 
 public class Sort {
@@ -276,27 +277,8 @@ public class Sort {
     }
 
     public static int sort(int n) {
-        int count = 0;
-        if (n >>> 16 == 0) {
-            count += 16;
-            n <<= 16;
-        }
-        if (n >>> 24 == 0) {
-            count += 8;
-            n <<= 8;
-        }
-        if (n >>> 28 == 0) {
-            count += 4;
-            n <<= 4;
-        }
-        if (n >>> 30 == 0) {
-            count += 2;
-            n <<= 2;
-        }
-        if (n >>> 31 == 0) {
-            count += 1;
-        }
-        return count;
+        System.out.println("commit test 1");
+        return 0;
     }
 
 
