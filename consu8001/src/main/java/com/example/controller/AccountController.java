@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author zxw
@@ -42,13 +42,13 @@ public class AccountController {
     private HelloService helloService;
 
     @GetMapping("/list")
-    public List<AccountDO> list(){
+    public List<AccountDO> list() {
         return accountService.list();
     }
 
     @GetMapping("/update/{info}")
     @GlobalTransactional
-    public boolean update(@PathVariable("info") String info){
+    public boolean update(@PathVariable("info") String info) {
         log.info("XID:{}", RootContext.getXID());
         AccountDO one = accountService.getOne(new LambdaQueryWrapper<AccountDO>().eq(AccountDO::getId, 1), false);
         boolean update1 = accountService.update(new LambdaUpdateWrapper<AccountDO>()

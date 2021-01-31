@@ -1,4 +1,4 @@
-virtualIP: 192.168.56.103
+virtualIP: 192.168.56.101
 server:
   port: 8001
 eureka:
@@ -10,10 +10,11 @@ spring:
     name: consu8001
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://${virtualIP}:33306/account?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://${virtualIP}:3306/account?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
+
 
 mybatis-plus:
   type-aliases-package: com.example.entity

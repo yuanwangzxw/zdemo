@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>FileModify</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>FileModify</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <properties>
+        <!--自定义3个变量分别作用指定spring环境，jar包名称，是否跳过test-->
+        <profiles.active>dev</profiles.active>
+        <finalName>fileModify-dev</finalName>
+        <skipTestConfig>true</skipTestConfig>
+      </properties>
+      <!--默认启用当前环境-->
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>test</id>
+      <properties>
+        <profiles.active>test</profiles.active>
+        <finalName>fileModify-test</finalName>
+        <skipTestConfig>false</skipTestConfig>
+      </properties>
+    </profile>
+  </profiles>
+
+  <build>
+    <!--取指定环境的配置作为jar包名称-->
+    <finalName>${finalName}</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>application*</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/xml</directory>
+        <!--true表示替换资源文件中的变量-->
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skipTests>${skipTestConfig}</skipTests>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

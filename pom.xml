@@ -7,9 +7,11 @@
         <module>eureka7001</module>
         <module>consu8001</module>
         <module>pro9001</module>
-        <module>mybatis-plus</module>
         <module>mybatis</module>
         <module>authentication</module>
+        <module>consu8002</module>
+        <module>FileModify</module>
+        <module>oauth2</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

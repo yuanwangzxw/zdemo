@@ -1,11 +1,26 @@
 virtualHost: 192.168.56.101
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
     druid:
+      driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://${virtualHost}:3306/account
       username: root
       password: 123456
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      filters: stat
+      async-init: true
+
 mybatis:
   type-aliases-package: com.zxw.demo.mapper
   configuration:
@@ -13,3 +28,4 @@ mybatis:
 logging:
   level:
     com.zxw.demo.mapper: debug
+

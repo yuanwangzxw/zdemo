@@ -1,0 +1,7 @@
+spring:
+  redis:
+    host: 125.64.43.53
+    port: 10001
+    password: M9Ncehx92#$Redis
+    database: 10
+
